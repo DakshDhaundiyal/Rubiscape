@@ -4,10 +4,10 @@ import { useStore } from '../store';
 
 export const handleDataLoad = async (data: any[], name: string) => {
   const { setDataset, setAnalysis, updateProgress } = useStore.getState();
-  
+
   updateProgress('Parsing...', 20);
   setDataset(data, name);
-  
+
   updateProgress('Processing Engine...', 50);
   try {
     const analysis = await processData(data);
@@ -22,11 +22,11 @@ export const handleDataLoad = async (data: any[], name: string) => {
 export const loadSampleData = async () => {
   const { updateProgress } = useStore.getState();
   updateProgress('Fetching Sample...', 10);
-  
+
   try {
     const response = await fetch('/sample_data.csv');
     const csvText = await response.text();
-    
+
     Papa.parse(csvText, {
       header: true,
       dynamicTyping: true,
