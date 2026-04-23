@@ -9,7 +9,7 @@ import { InsightsPanel } from './components/panels/InsightsPanel';
 import { NarrativePanel } from './components/panels/NarrativePanel';
 import { QueryPanel } from './components/panels/QueryPanel';
 import { pingBackend } from './lib/api';
-import { handleDataLoad } from './lib/dataHandler';
+import { handleDataLoad, loadSampleData } from './lib/dataHandler';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Upload } from 'lucide-react';
 import Papa from 'papaparse';
@@ -88,15 +88,27 @@ const App: React.FC = () => {
                       <h2 className="font-display text-xl text-text-secondary uppercase">Ingest Data for Analysis</h2>
                       <p className="font-mono text-[10px] text-text-muted">Drag & Drop CSV to initialize full-stack engine</p>
                     </div>
-                    <div className="relative inline-block">
-                      <input 
-                        type="file" 
-                        accept=".csv" 
-                        onChange={handleFileChange} 
-                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                      />
-                      <button className="bg-bg-3 border border-gold/40 text-gold px-6 py-2 rounded-sm font-display text-[10px] uppercase tracking-widest hover:bg-gold hover:text-bg-0 transition-all">
-                        Select File Manually
+                    <div className="flex items-center gap-4 justify-center">
+                      <div className="relative inline-block">
+                        <input 
+                          type="file" 
+                          accept=".csv" 
+                          onChange={handleFileChange} 
+                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                        />
+                        <button className="bg-bg-3 border border-white/10 text-text-secondary px-6 py-2 rounded-sm font-display text-[10px] uppercase tracking-widest hover:border-white/30 hover:text-text-primary transition-all">
+                          Select File Manually
+                        </button>
+                      </div>
+                      
+                      <button 
+                        onClick={loadSampleData}
+                        className="group relative flex items-center gap-2 px-6 py-2 bg-gold/10 border border-gold/50 rounded-sm transition-all hover:bg-gold hover:shadow-[0_0_20px_rgba(240,165,0,0.4)] overflow-hidden"
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer" />
+                        <span className="text-[10px] font-bold text-gold group-hover:text-bg-0 uppercase tracking-widest">
+                          Sample Dataset
+                        </span>
                       </button>
                     </div>
                   </div>

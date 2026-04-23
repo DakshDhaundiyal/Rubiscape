@@ -44,16 +44,6 @@ export const TopBar: React.FC = () => {
       </nav>
 
       <div className="flex items-center gap-4">
-        <button 
-          onClick={loadSampleData}
-          className="group relative flex items-center gap-2 px-4 py-2 bg-gold/10 border border-gold/50 rounded-full transition-all hover:bg-gold hover:shadow-[0_0_20px_rgba(240,165,0,0.4)] overflow-hidden"
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer" />
-          <div className="w-1.5 h-1.5 bg-gold rounded-full group-hover:bg-bg-0 animate-pulse" />
-          <span className="text-[10px] font-bold text-gold group-hover:text-bg-0 uppercase tracking-widest">
-            Explore Intelligence
-          </span>
-        </button>
         <div className="flex items-center gap-2 bg-bg-3 px-3 py-1 rounded-full border border-border">
           <div className="w-1.5 h-1.5 bg-accent-success rounded-full animate-pulse shadow-[0_0_8px_var(--success)]"></div>
           <span className="text-[10px] font-mono text-text-secondary uppercase">Groq · Llama3.3</span>
