@@ -38,8 +38,8 @@ def generate_realistic_data(n=500):
     data['Stability_Index'][99] = 0.12
     
     df = pd.DataFrame(data)
-    df.to_csv('frontend/public/sample_data_v2.csv', index=False)
-    print(f"Generated {n} records in frontend/public/sample_data_v2.csv")
+    df.to_csv('frontend/public/sample_data.csv', index=False)
+    print(f"Generated {n} records in frontend/public/sample_data.csv")
 
 if __name__ == "__main__":
     generate_realistic_data(100)
