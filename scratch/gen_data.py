@@ -35,11 +35,11 @@ def generate_realistic_data(n=500):
     data['Salary'][50] = 42000
     
     # 3. Very low stability (Simulated risk)
-    data['Stability_Index'][100] = 0.12
+    data['Stability_Index'][99] = 0.12
     
     df = pd.DataFrame(data)
-    df.to_csv('frontend/public/sample_data.csv', index=False)
-    print(f"Generated {n} records in frontend/public/sample_data.csv")
+    df.to_csv('frontend/public/sample_data_v2.csv', index=False)
+    print(f"Generated {n} records in frontend/public/sample_data_v2.csv")
 
 if __name__ == "__main__":
-    generate_realistic_data(500)
+    generate_realistic_data(100)

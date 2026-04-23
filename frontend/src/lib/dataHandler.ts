@@ -24,7 +24,7 @@ export const loadSampleData = async () => {
   updateProgress('Fetching Sample...', 10);
 
   try {
-    const response = await fetch('/sample_data.csv');
+    const response = await fetch('/sample_data_v2.csv');
     const csvText = await response.text();
 
     Papa.parse(csvText, {
@@ -33,7 +33,7 @@ export const loadSampleData = async () => {
       skipEmptyLines: true,
       quoteChar: '', // Disable quote handling to prevent truncation on "dirty" data
       complete: (results) => {
-        handleDataLoad(results.data, 'sample_data.csv');
+        handleDataLoad(results.data, 'sample_data_v2.csv');
       }
     });
   } catch (e) {
