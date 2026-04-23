@@ -13,7 +13,7 @@ export const StatsPanel: React.FC = () => {
   const s = analysis.stats[selectedCol];
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       className="grid grid-cols-12 gap-6 h-full"
@@ -34,8 +34,8 @@ export const StatsPanel: React.FC = () => {
             </thead>
             <tbody>
               {analysis.numericColumns.map(col => (
-                <tr 
-                  key={col} 
+                <tr
+                  key={col}
                   onClick={() => setSelectedCol(col)}
                   className={`border-b border-border hover:bg-bg-3 cursor-pointer transition-colors ${selectedCol === col ? 'bg-gold-dim' : ''}`}
                 >
@@ -44,8 +44,8 @@ export const StatsPanel: React.FC = () => {
                   <td className="p-3">{analysis.stats[col].median.toFixed(2)}</td>
                   <td className="p-3">{analysis.stats[col].stdDev.toFixed(2)}</td>
                   <td className="p-3">{analysis.stats[col].skewness.toFixed(2)}</td>
-                  <td className="p-3">{analysis.stats[col].kurtosis.toFixed(2)}</td>
-                  <td className="p-3">{((analysis.stats[col].nulls / analysis.stats[col].n) * 100).toFixed(1)}%</td>
+                  <td className="p-3">{(analysis.stats[col]?.kurtosis ?? 0).toFixed(2)}</td>
+                  <td className="p-3">{(((analysis.stats[col]?.nulls ?? 0) / (analysis.stats[col]?.n ?? 1)) * 100).toFixed(1)}%</td>
                 </tr>
               ))}
             </tbody>
@@ -67,9 +67,9 @@ export const StatsPanel: React.FC = () => {
           <div className="mt-4 flex flex-col gap-4">
             <h4 className="font-display text-[10px] text-text-muted uppercase">Statistical Interpretation</h4>
             <p className="font-narrative text-md leading-relaxed text-text-secondary">
-              {selectedCol} exhibits a {Math.abs(s.skewness) > 1 ? 'highly skewed' : 'relatively normal'} distribution. 
-              With a mean of <span className="text-gold font-bold">{s.mean.toFixed(2)}</span> and standard deviation of <span className="text-gold font-bold">{s.stdDev.toFixed(2)}</span>, 
-              the data points are {s.stdDev/s.mean > 0.5 ? 'widely dispersed' : 'tightly clustered'}. 
+              {selectedCol} exhibits a {Math.abs(s.skewness) > 1 ? 'highly skewed' : 'relatively normal'} distribution.
+              With a mean of <span className="text-gold font-bold">{s.mean.toFixed(2)}</span> and standard deviation of <span className="text-gold font-bold">{s.stdDev.toFixed(2)}</span>,
+              the data points are {s.stdDev / s.mean > 0.5 ? 'widely dispersed' : 'tightly clustered'}.
             </p>
           </div>
         </Card>

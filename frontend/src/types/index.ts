@@ -4,7 +4,8 @@ export interface StatSummary {
   stdDev: number;
   cv: number;
   skewness: number;
-  kurtosis?: number;
+  kurtosis: number;
+  nulls: number;
   min: number;
   max: number;
   n: number;

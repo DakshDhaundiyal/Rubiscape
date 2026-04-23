@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, Tooltip, ResponsiveContainer } from 'recharts';
 
 interface HistogramProps {
   data: Array<{ range: string; count: number }>;
@@ -24,18 +24,18 @@ export const Histogram: React.FC<HistogramProps> = ({ data, color = "#f0a500" })
       No distribution data
     </div>
   );
-  
+
   return (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart data={data} margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
-        <Tooltip 
-          content={<CustomTooltip />} 
-          cursor={{ fill: 'rgba(255,255,255,0.05)' }} 
+        <Tooltip
+          content={<CustomTooltip />}
+          cursor={{ fill: 'rgba(255,255,255,0.05)' }}
         />
-        <Bar 
-          dataKey="count" 
-          fill={color} 
-          fillOpacity={0.6} 
+        <Bar
+          dataKey="count"
+          fill={color}
+          fillOpacity={0.6}
           radius={[4, 4, 0, 0]}
           minPointSize={10}
         />
