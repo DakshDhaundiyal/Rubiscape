@@ -31,6 +31,7 @@ const App: React.FC = () => {
       header: true,
       dynamicTyping: true,
       skipEmptyLines: true,
+      quoteChar: '', // Disable quote handling to prevent truncation
       complete: (results) => {
         handleDataLoad(results.data, file.name);
       }

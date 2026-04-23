@@ -31,6 +31,7 @@ export const loadSampleData = async () => {
       header: true,
       dynamicTyping: true,
       skipEmptyLines: true,
+      quoteChar: '', // Disable quote handling to prevent truncation on "dirty" data
       complete: (results) => {
         handleDataLoad(results.data, 'sample_data.csv');
       }
