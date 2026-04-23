@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-0: #07080a;
+  --color-bg-1: #0d0f12;
+  --color-bg-2: #111418;
+  --color-bg-3: #181c22;
+  --color-bg-4: #1f242d;
+  
+  --color-gold: #f0a500;
+  --color-gold-dim: rgba(240, 165, 0, 0.08);
+  --color-gold-glow: rgba(240, 165, 0, 0.18);
+  
+  --color-text-primary: #e8e4dc;
+  --color-text-secondary: #9a9690;
+  --color-text-muted: #3f3d3a;
+  
+  --color-accent-success: #4bb97a;
+  --color-accent-danger: #e05252;
+  --color-accent-info: #4a9eff;
+  --color-accent-warning: #f0a500;
+}
+
+:root {
+  --bg-0: #07080a;
+  --bg-1: #0d0f12;
+  --bg-2: #111418;
+  --bg-3: #181c22;
+  --bg-4: #1f242d;
+  
+  --gold: #f0a500;
+  --gold-dim: rgba(240, 165, 0, 0.08);
+  --gold-glow: rgba(240, 165, 0, 0.18);
+  
+  --text-primary: #e8e4dc;
+  --text-secondary: #9a9690;
+  --text-muted: #3f3d3a;
+  
+  --success: #4bb97a;
+  --danger: #e05252;
+  --info: #4a9eff;
+  --warning: #f0a500;
+  
+  --border: rgba(255, 255, 255, 0.07);
+  --border-active: rgba(255, 255, 255, 0.14);
+}
+
+body {
+  @apply bg-black text-[#e8e4dc] font-mono;
+  background-color: var(--bg-0);
+  overflow: hidden;
+}
+
+/* Typography */
+.font-display { font-family: 'Syne', sans-serif; font-weight: 700; }
+.font-mono { font-family: 'DM Mono', monospace; }
+.font-narrative { font-family: 'Instrument Serif', serif; font-style: italic; }
+
+/* D3 Chart Labels */
+.axis-label {
+  fill: var(--text-secondary);
+  font-size: 10px;
+  font-family: 'DM Mono', monospace;
+}
+
+.grid-line {
+  stroke: var(--border);
+}
+
+@keyframes terminal-shimmer {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+.shimmer {
+  animation: terminal-shimmer 1.5s infinite ease-in-out;
+}

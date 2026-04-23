@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: narrative-backend
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+
+  - type: web
+    name: narrative-frontend
+    env: static
+    buildCommand: npm install && npm run build
+    publishPath: ./dist
