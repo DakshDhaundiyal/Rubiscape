@@ -9,6 +9,7 @@ import { InsightsPanel } from './components/panels/InsightsPanel';
 import { NarrativePanel } from './components/panels/NarrativePanel';
 import { QueryPanel } from './components/panels/QueryPanel';
 import { processData, pingBackend } from './lib/api';
+import { handleDataLoad } from './lib/dataHandler';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Upload } from 'lucide-react';
 import Papa from 'papaparse';
@@ -26,20 +27,12 @@ const App: React.FC = () => {
   }, []);
 
   const handleFileUpload = (file: File) => {
-    updateProgress('Parsing...', 20);
     Papa.parse(file, {
       header: true,
       dynamicTyping: true,
       skipEmptyLines: true,
-      complete: async (results) => {
-        setDataset(results.data, file.name);
-        updateProgress('Processing Engine...', 50);
-        try {
-          const analysis = await processData(results.data);
-          setAnalysis(analysis);
-        } catch (e) {
-          updateProgress('Engine Error', 0);
-        }
+      complete: (results) => {
+        handleDataLoad(results.data, file.name);
       }
     });
   };

@@ -2,6 +2,7 @@ import React from 'react';
 import { useStore } from '../../store';
 import { motion } from 'framer-motion';
 import type { PanelType } from '../../types';
+import { loadSampleData } from '../../lib/dataHandler';
 
 export const TopBar: React.FC = () => {
   const { activePanel, setActivePanel, filename } = useStore();
@@ -43,12 +44,18 @@ export const TopBar: React.FC = () => {
       </nav>
 
       <div className="flex items-center gap-4">
+        <button 
+          onClick={loadSampleData}
+          className="text-[9px] font-bold text-gold uppercase tracking-widest border border-gold/30 px-3 py-1.5 rounded-sm hover:bg-gold hover:text-bg-0 transition-all"
+        >
+          Explore Sample
+        </button>
         <div className="flex items-center gap-2 bg-bg-3 px-3 py-1 rounded-full border border-border">
           <div className="w-1.5 h-1.5 bg-accent-success rounded-full animate-pulse shadow-[0_0_8px_var(--success)]"></div>
           <span className="text-[10px] font-mono text-text-secondary uppercase">Groq · Llama3.3</span>
         </div>
         <div className="flex items-center gap-2 bg-bg-3 px-3 py-1 rounded-full border border-border">
-          <span className="text-[10px] font-mono text-text-primary uppercase max-w-[120px] truncate">{filename}</span>
+          <span className="text-[10px] font-mono text-text-primary uppercase max-w-[120px] truncate">{filename || 'No File'}</span>
         </div>
       </div>
     </header>
