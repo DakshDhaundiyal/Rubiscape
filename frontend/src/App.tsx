@@ -8,14 +8,14 @@ import { AnomalyPanel } from './components/panels/AnomalyPanel';
 import { InsightsPanel } from './components/panels/InsightsPanel';
 import { NarrativePanel } from './components/panels/NarrativePanel';
 import { QueryPanel } from './components/panels/QueryPanel';
-import { processData, pingBackend } from './lib/api';
+import { pingBackend } from './lib/api';
 import { handleDataLoad } from './lib/dataHandler';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Upload } from 'lucide-react';
 import Papa from 'papaparse';
 
 const App: React.FC = () => {
-  const { dataset, setDataset, setAnalysis, activePanel, updateProgress } = useStore();
+  const { dataset, activePanel } = useStore();
   const [isDragging, setIsDragging] = useState(false);
 
   // Keep-alive Ping (14 minutes)
