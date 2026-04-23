@@ -2,7 +2,6 @@ import React from 'react';
 import { useStore } from '../../store';
 import { motion } from 'framer-motion';
 import type { PanelType } from '../../types';
-import { loadSampleData } from '../../lib/dataHandler';
 
 export const TopBar: React.FC = () => {
   const { activePanel, setActivePanel, filename } = useStore();
