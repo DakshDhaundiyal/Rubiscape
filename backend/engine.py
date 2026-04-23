@@ -11,16 +11,22 @@ class StatsEngine:
         df = pd.DataFrame(data)
         total_rows = len(df)
         
-        # Identify column types
+        # Force numeric conversion for all columns (handling empty strings/NAs)
+        for col in df.columns:
+            # If the column is mostly numbers but has some strings, force it to numeric
+            df[col] = pd.to_numeric(df[col], errors='coerce')
+            
+        # Identify column types after coercion
         all_numeric = df.select_dtypes(include=[np.number]).columns.tolist()
         categorical = df.select_dtypes(exclude=[np.number]).columns.tolist()
         columns = df.columns.tolist()
         
-        # Filter for "useful" numeric columns (ignore IDs, etc.)
+        # Filter for "useful" numeric columns
         numeric_columns = []
         id_keywords = ['id', 'uid', 'code', 'index', 'pk', 'fk', 'sl_no', 'slno', 'serial', 'key']
         
         for col in all_numeric:
+            if df[col].isna().all(): continue # Skip fully empty columns
             name_lower = col.lower()
             if any(key in name_lower for key in id_keywords): continue
             if df[col].nunique() == total_rows and total_rows > 10: continue
