@@ -32,6 +32,8 @@ __pycache__/
 *$py.class
 .pytest_cache/
 
-# Data
-*.csv
-*.xlsx
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
