@@ -1,87 +1,383 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-0: #07080a;
-  --color-bg-1: #0d0f12;
-  --color-bg-2: #111418;
-  --color-bg-3: #181c22;
-  --color-bg-4: #1f242d;
-  
-  --color-gold: #f0a500;
-  --color-gold-dim: rgba(240, 165, 0, 0.08);
-  --color-gold-glow: rgba(240, 165, 0, 0.18);
-  
-  --color-text-primary: #e8e4dc;
-  --color-text-secondary: #9a9690;
-  --color-text-muted: #3f3d3a;
-  
-  --color-accent-success: #4bb97a;
-  --color-accent-danger: #e05252;
-  --color-accent-info: #4a9eff;
-  --color-accent-warning: #f0a500;
+  --color-bio-black:   #030508;
+  --color-bio-surface: #070d0f;
+  --color-bio-card:    #0b1417;
+  --color-bio-card2:   #0f1c20;
+
+  --color-bio-green:       #39ff6a;
+  --color-bio-purple:      #b44fff;
+  --color-bio-teal:        #00f5c8;
+  --color-bio-danger:      #e05252;
+
+  --color-bio-green-dim:   rgba(57, 255, 106, 0.07);
+  --color-bio-green-glow:  rgba(57, 255, 106, 0.18);
+  --color-bio-purple-dim:  rgba(180, 79, 255, 0.07);
+  --color-bio-border:      rgba(57, 255, 106, 0.13);
+  --color-bio-border2:     rgba(180, 79, 255, 0.13);
+
+  --color-text-primary:   #dff5e8;
+  --color-text-secondary: rgba(57, 255, 106, 0.55);
+  --color-text-muted:     rgba(57, 255, 106, 0.28);
 }
 
 :root {
-  --bg-0: #07080a;
-  --bg-1: #0d0f12;
-  --bg-2: #111418;
-  --bg-3: #181c22;
-  --bg-4: #1f242d;
-  
-  --gold: #f0a500;
-  --gold-dim: rgba(240, 165, 0, 0.08);
-  --gold-glow: rgba(240, 165, 0, 0.18);
-  
-  --text-primary: #e8e4dc;
-  --text-secondary: #9a9690;
-  --text-muted: #3f3d3a;
-  
-  --success: #4bb97a;
+  /* Surfaces */
+  --bio-black:   #030508;
+  --bio-surface: #070d0f;
+  --bio-card:    #0b1417;
+  --bio-card2:   #0f1c20;
+
+  /* Accents */
+  --bio-green:       #39ff6a;
+  --bio-purple:      #b44fff;
+  --bio-teal:        #00f5c8;
+  --bio-danger:      #e05252;
+
+  /* Dim / Glow variants */
+  --bio-green-dim:   rgba(57, 255, 106, 0.07);
+  --bio-green-glow:  rgba(57, 255, 106, 0.18);
+  --bio-purple-dim:  rgba(180, 79, 255, 0.07);
+
+  /* Borders */
+  --bio-border:  rgba(57, 255, 106, 0.13);
+  --bio-border2: rgba(180, 79, 255, 0.13);
+
+  /* Text */
+  --text-primary:   #dff5e8;
+  --text-secondary: rgba(57, 255, 106, 0.55);
+  --text-muted:     rgba(57, 255, 106, 0.28);
+
+  /* Legacy aliases (do not use in new code) */
+  --bg-0: #030508;
+  --bg-1: #070d0f;
+  --bg-2: #0b1417;
+  --bg-3: #0f1c20;
+  --bg-4: #122028;
+  --gold: #39ff6a;
+  --gold-dim: rgba(57, 255, 106, 0.07);
+  --gold-glow: rgba(57, 255, 106, 0.18);
+  --success: #39ff6a;
   --danger: #e05252;
-  --info: #4a9eff;
-  --warning: #f0a500;
-  
-  --border: rgba(255, 255, 255, 0.07);
-  --border-active: rgba(255, 255, 255, 0.14);
+  --border: rgba(57, 255, 106, 0.13);
+  --border-active: rgba(57, 255, 106, 0.28);
 }
 
+/* ─── Body ──────────────────────────────────────────────── */
 body {
-  @apply bg-black text-[#e8e4dc] font-mono;
-  background-color: var(--bg-0);
+  background-color: var(--bio-black);
+  color: var(--text-primary);
+  font-family: 'DM Mono', monospace;
   overflow: hidden;
 }
 
-/* Typography */
-.font-display { font-family: 'Syne', sans-serif; font-weight: 700; }
-.font-mono { font-family: 'DM Mono', monospace; }
+/* ─── Typography ────────────────────────────────────────── */
+.font-display   { font-family: 'Syne', sans-serif; font-weight: 800; letter-spacing: 0.16em; }
+.font-mono      { font-family: 'DM Mono', monospace; }
 .font-narrative { font-family: 'Instrument Serif', serif; font-style: italic; }
 
-/* D3 Chart Labels */
+/* ─── Axis / Chart ──────────────────────────────────────── */
 .axis-label {
-  fill: var(--text-secondary);
+  fill: var(--text-muted);
   font-size: 10px;
   font-family: 'DM Mono', monospace;
 }
+.grid-line { stroke: var(--bio-border); }
 
-.grid-line {
-  stroke: var(--border);
+/* ─── Custom Scrollbar ──────────────────────────────────── */
+.custom-scrollbar::-webkit-scrollbar { width: 3px; height: 3px; }
+.custom-scrollbar::-webkit-scrollbar-track  { background: var(--bio-card); }
+.custom-scrollbar::-webkit-scrollbar-thumb  { background: rgba(57,255,106,0.2); border-radius: 2px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(57,255,106,0.45); }
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(57,255,106,0.18) var(--bio-card);
 }
 
-@keyframes terminal-shimmer {
-  0% { opacity: 0.3; }
-  50% { opacity: 1; }
-  100% { opacity: 0.3; }
+/* ═══════════════════════════════════════════════════════════
+   BIOPUNK KEYFRAME ANIMATIONS
+   ══════════════════════════════════════════════════════════ */
+
+/* A. BREATHE — panels & cards inhale/exhale */
+@keyframes breathe {
+  0%, 100% { transform: scale(1);     opacity: 1;    }
+  50%       { transform: scale(1.018); opacity: 0.88; }
+}
+.breathe { animation: breathe 3.2s ease-in-out infinite; }
+
+/* B. SCANLINE — sweeping beam */
+@keyframes scanline-sweep {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+.scanline-beam {
+  position: fixed;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(57,255,106,0.08), transparent);
+  animation: scanline-sweep 5s linear infinite;
+  pointer-events: none;
+  z-index: 9;
+}
+.scanline-overlay {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent, transparent 2px,
+    rgba(0,0,0,0.032) 2px, rgba(0,0,0,0.032) 4px
+  );
+  pointer-events: none;
+  z-index: 8;
 }
 
-.shimmer {
-  animation: terminal-shimmer 1.5s infinite ease-in-out;
+/* C. PULSE RING — active indicators */
+@keyframes pulse-ring {
+  0%   { transform: scale(0.85); opacity: 0.7; }
+  70%  { transform: scale(1.5);  opacity: 0;   }
+  100% { transform: scale(1.5);  opacity: 0;   }
+}
+.pulse-ring {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.pulse-ring::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: rgba(57,255,106,0.25);
+  animation: pulse-ring 2.5s ease-out infinite;
 }
 
-@keyframes shimmer {
-  0% { transform: translateX(-100%); }
+/* D. NODE GLOW — bioluminescent text values */
+@keyframes node-pulse {
+  0%, 100% {
+    text-shadow:
+      0 0 4px  rgba(57,255,106,0.5),
+      0 0 12px rgba(57,255,106,0.2);
+  }
+  50% {
+    text-shadow:
+      0 0 8px  rgba(57,255,106,0.9),
+      0 0 28px rgba(57,255,106,0.45),
+      0 0 60px rgba(57,255,106,0.15);
+  }
+}
+.node-glow { animation: node-pulse 2.2s ease-in-out infinite; }
+
+@keyframes node-pulse-purple {
+  0%, 100% {
+    text-shadow:
+      0 0 4px  rgba(180,79,255,0.5),
+      0 0 12px rgba(180,79,255,0.2);
+  }
+  50% {
+    text-shadow:
+      0 0 8px  rgba(180,79,255,0.9),
+      0 0 28px rgba(180,79,255,0.45),
+      0 0 60px rgba(180,79,255,0.15);
+  }
+}
+.node-glow-purple { animation: node-pulse-purple 2.2s ease-in-out infinite; }
+
+/* E. MORPH BLOB — organic background shapes */
+@keyframes morph {
+  0%, 100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; }
+  33%       { border-radius: 40% 60% 45% 55% / 60% 40% 60% 40%; }
+  66%       { border-radius: 55% 45% 60% 40% / 40% 55% 45% 60%; }
+}
+.morph-blob {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  bottom: -20px;
+  right: -20px;
+  background: radial-gradient(circle, rgba(57,255,106,0.06), transparent);
+  animation: morph 9s ease-in-out infinite;
+  pointer-events: none;
+}
+.morph-blob-purple {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  bottom: -20px;
+  right: -20px;
+  background: radial-gradient(circle, rgba(180,79,255,0.06), transparent);
+  animation: morph 9s ease-in-out infinite 2s;
+  pointer-events: none;
+}
+
+/* F. FLOAT — card levitation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px);  }
+  50%       { transform: translateY(-4px); }
+}
+.float { animation: float 4s ease-in-out infinite; }
+
+/* G. DATA CRAWL — binary stream */
+@keyframes data-crawl {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+.data-crawl-wrap {
+  position: absolute;
+  top: 0; right: 0;
+  width: 18px;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.12;
+}
+.data-crawl-inner {
+  font-size: 7px;
+  color: var(--bio-green);
+  font-family: 'DM Mono', monospace;
+  line-height: 1.35;
+  white-space: pre;
+  animation: data-crawl 12s linear infinite;
+  user-select: none;
+}
+
+/* H. FLICKER — organic instability */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92%  { opacity: 1; }
+  93%  { opacity: 0.6; }
+  94%  { opacity: 1; }
+  97%  { opacity: 0.82; }
+  98%  { opacity: 1; }
+}
+.flicker { animation: flicker 9s infinite; }
+
+/* I. BAR GROW — histogram reveal */
+@keyframes bar-grow {
+  0%   { transform: scaleY(0); transform-origin: bottom; }
+  100% { transform: scaleY(1); transform-origin: bottom; }
+}
+
+/* J. PAGE TRANSITION BLUR */
+/* (handled via Framer Motion in App.tsx) */
+
+/* ─── Pulse Dot ──────────────────────────────────────────── */
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1);   opacity: 1;   }
+  50%       { transform: scale(1.5); opacity: 0.5; }
+}
+.pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+/* ─── Terminal Cursor (bio-green block) ─────────────────── */
+@keyframes bio-cursor {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.bio-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  background: var(--bio-green);
+  animation: node-pulse 2.2s ease-in-out infinite, bio-cursor 1s step-end infinite;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+/* ─── Shimmer Skeleton ──────────────────────────────────── */
+@keyframes shimmer-slide {
+  0%   { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
 }
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: var(--bio-card2);
+  border-radius: 3px;
+}
+.skeleton-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(57,255,106,0.07) 40%,
+    rgba(57,255,106,0.14) 50%,
+    rgba(57,255,106,0.07) 60%,
+    transparent 100%
+  );
+  animation: shimmer-slide 1.8s infinite ease-in-out;
+}
 
-.animate-shimmer {
-  animation: shimmer 2s infinite linear;
+/* ─── Button Shimmer ────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.animate-shimmer { animation: shimmer 2s infinite linear; }
+
+/* ─── Terminal Shimmer (legacy) ─────────────────────────── */
+@keyframes terminal-shimmer {
+  0%   { opacity: 0.3; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+.shimmer { animation: terminal-shimmer 1.5s infinite ease-in-out; }
+
+/* ─── Scan Lines (drag state) ───────────────────────────── */
+.scan-lines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(57, 255, 106, 0.015) 2px,
+    rgba(57, 255, 106, 0.015) 4px
+  );
+  pointer-events: none;
+}
+
+/* ─── Bio Glow Utilities ─────────────────────────────────── */
+.bio-glow {
+  box-shadow: 0 0 8px var(--bio-green-glow);
+}
+.bio-text-glow {
+  text-shadow: 0 0 12px rgba(57, 255, 106, 0.4);
+}
+.bio-box-glow {
+  box-shadow:
+    0 0 0 1px rgba(57,255,106,0.15),
+    0 0 24px rgba(57,255,106,0.06),
+    0 4px 32px rgba(0,0,0,0.4);
+}
+
+/* ─── Prose Override for Narrative Panel ─────────────────── */
+.prose-narrative h1,
+.prose-narrative h2,
+.prose-narrative h3 {
+  font-family: 'Syne', sans-serif;
+  color: var(--bio-green);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 800;
+}
+.prose-narrative p {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.85;
+  margin-bottom: 1.25rem;
+}
+.prose-narrative strong {
+  color: var(--bio-green);
+  font-style: normal;
+}
+.prose-narrative code {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8em;
+  color: var(--bio-green);
+  background: var(--bio-green-dim);
+  padding: 0.1em 0.4em;
+  border-radius: 2px;
 }

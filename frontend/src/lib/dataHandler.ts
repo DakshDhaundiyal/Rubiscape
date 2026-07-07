@@ -25,18 +25,23 @@ export const loadSampleData = async () => {
 
   try {
     const response = await fetch('/sample_data.csv');
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const csvText = await response.text();
 
     Papa.parse(csvText, {
       header: true,
       dynamicTyping: true,
       skipEmptyLines: true,
-      quoteChar: '', // Disable quote handling to prevent truncation on "dirty" data
       complete: (results) => {
         handleDataLoad(results.data, 'sample_data.csv');
+      },
+      error: (err: Error) => {
+        console.error('CSV parse error:', err);
+        updateProgress('Parse Error', 0);
       }
     });
   } catch (e) {
+    console.error('Sample data fetch error:', e);
     updateProgress('Fetch Error', 0);
   }
 };

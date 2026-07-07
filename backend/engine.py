@@ -11,9 +11,8 @@ class StatsEngine:
         df = pd.DataFrame(data)
         total_rows = len(df)
         
-        # Force numeric conversion for all columns (handling empty strings/NAs)
+
         for col in df.columns:
-            # If the column is mostly numbers but has some strings, force it to numeric
             df[col] = pd.to_numeric(df[col], errors='coerce')
             
         # Identify column types after coercion
