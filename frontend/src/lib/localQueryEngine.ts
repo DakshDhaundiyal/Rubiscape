@@ -18,15 +18,6 @@ function fmtVal(val: any): string {
   return String(val);
 }
 
-function fmtRow(row: Row, labelCol: string | null, valueCol: string, value: any): string {
-  const label = labelCol ? row[labelCol] ?? 'Unknown' : null;
-  const rest = Object.entries(row)
-    .filter(([k]) => k !== labelCol && k !== valueCol)
-    .map(([k, v]) => `${k}: ${fmtVal(v)}`)
-    .join(' | ');
-  const who = label ? `**${label}**` : 'The record';
-  return `${who} has a ${valueCol} of **${fmtVal(value)}**${rest ? `\n> ${rest}` : ''}`;
-}
 
 /** Find the column in the dataset that best matches a keyword from the question */
 function findColumn(columns: string[], keyword: string): string | null {

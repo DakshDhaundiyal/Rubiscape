@@ -86,9 +86,6 @@ export const ZScatterPlot: React.FC<ZScatterPlotProps> = ({ anomalies, stats, co
   const toY = (idx: number) => padT + (idx + 0.5) * bandH;
 
   /* ── Anomaly set for fast lookup ─────────────────── */
-  const anomalySet = new Set(anomalies.map(a => `${a.row}__${a.col}`));
-  const anomalyMap: Record<string, Anomaly> = {};
-  for (const a of anomalies) anomalyMap[`${a.row}__${a.col}`] = a;
 
   /* ── X axis ticks ────────────────────────────────── */
   const tickCount = Math.max(4, Math.min(8, Math.floor(plotW / 100)));
@@ -177,7 +174,7 @@ export const ZScatterPlot: React.FC<ZScatterPlotProps> = ({ anomalies, stats, co
           // We can't access raw dataset here, but stats gives us buckets.
           // Render synthetic normal-zone dots representing density from buckets.
           const buckets = s.buckets ?? [];
-          const dots: JSX.Element[] = [];
+          const dots: React.JSX.Element[] = [];
           let dotKey = 0;
           for (let bi = 0; bi < buckets.length; bi++) {
             const bucket = buckets[bi];

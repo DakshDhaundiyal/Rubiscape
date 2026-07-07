@@ -63,7 +63,6 @@ export const InsightsPanel: React.FC = () => {
 
   const highCount = insights.filter(i => i.severity === 'HIGH' || i.severity === 'CRITICAL').length;
   const medCount  = insights.filter(i => i.severity === 'MED').length;
-  const lowCount  = insights.filter(i => i.severity === 'LOW').length;
 
   const filtered = insights.filter(ins => {
     if (filter === 'HIGH') return ins.severity === 'HIGH' || ins.severity === 'CRITICAL';
